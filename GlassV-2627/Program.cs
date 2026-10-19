@@ -17,8 +17,10 @@ public class Program
         
         builder.Services.AddControllers();
 
-        builder.Services.AddDbContext<ApplicationDbContext>(options => 
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseNpgsql(
+                builder.Configuration.GetConnectionString("DefaultConnection")
+            )
         );
 
         var app = builder.Build();
